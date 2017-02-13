@@ -1,8 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ guild.name }}, {{ guild.realm.name }} ({{ guild.realm.region }})
-{% endblock %}
-
-{% block stylesheets %}
+    Managing {{ guild.name }} on  {{ guild.realm.name }} ({{ guild.realm.region }}):
+    <ul>
+        {% for member in guild.members %}
+            <li>
+                {{ member.name }}
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}

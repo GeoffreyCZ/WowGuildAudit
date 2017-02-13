@@ -35,6 +35,15 @@ class Guild
     private $realm;
 
     /**
+     * @ORM\OneToMany(targetEntity="Member", mappedBy="guild")
+     */
+    private $members;
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $key;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -82,5 +91,36 @@ class Guild
         $this->realm = $realm;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getMembers()
+    {
+        return $this->members;
+    }
+
+    /**
+     * @param mixed $members
+     */
+    public function setMembers($members)
+    {
+        $this->members = $members;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getKey()
+    {
+        return $this->key;
+    }
+
+    /**
+     * @param mixed $key
+     */
+    public function setKey($key)
+    {
+        $this->key = $key;
+    }
 
 }

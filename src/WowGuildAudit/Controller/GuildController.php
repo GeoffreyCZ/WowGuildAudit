@@ -31,6 +31,7 @@ class GuildController extends Controller
     public function manageGuildAction($guildName)
     {
         $guild = $this->getDoctrine()->getRepository(Guild::class)->findOneBy(array('name' => $guildName));
+        //todo proper error message when no guild found
         return $this->render('guild/manage.html.twig', array('guild' => $guild));
 
     }

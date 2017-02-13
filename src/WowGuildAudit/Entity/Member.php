@@ -29,7 +29,7 @@ class Member
     private $name;
 
     /**
-     * @ORM\OneToOne(targetEntity="Guild")
+     * @ORM\ManyToOne(targetEntity="Guild", inversedBy="members")
      * @ORM\JoinColumn(name="guild_id", referencedColumnName="id")
      */
     private $guild;

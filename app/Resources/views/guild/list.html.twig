@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <ul>
+        {% for guild in guilds %}
+            <li>{{ guild.name }}, {{ guild.realm.name }} ({{ guild.realm.region }})</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}

@@ -4,6 +4,11 @@
     <meta charset="UTF-8"/>
     <title>{% block title %}WoW Guild Audit{% endblock %}</title>
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css"/>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+    {% block javascripts %}
+    {% endblock %}
 </head>
 <body>
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -17,9 +22,5 @@
     </ul>
 </div>
 {% block body %}{% endblock %}
-{% block javascripts %}
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
-{% endblock %}
 </body>
 </html>

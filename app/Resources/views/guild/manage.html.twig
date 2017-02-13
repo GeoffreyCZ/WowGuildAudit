@@ -2,26 +2,83 @@
 
 {% block body %}
     Managing {{ guild.name }} on  {{ guild.realm.name }} ({{ guild.realm.region }})
-    <table class='table'>
-        <thead>
-        <tr>
-            <th></th>
-            <th>Character Name</th>
-            <th>Role</th>
-            <th>Realm (optional)</th>
-            <th>Status</th>
-        </tr>
-        </thead>
-        <tbody>
-            {% for member in guild.members %}
-                <tr>
-                    <td></td>
-                    <td>{{ member.name }}</td>
-                    <td>{{ member.role }}</td>
-                    <td>{{ member.realm.name }} ({{ member.realm.region }})</td>
-                    <td>//todo connect this to python script</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <section id='services'>
+        <div class='container'>
+            <div class='col-lg-8 col-lg-offset-2 text-center'>
+                <table class='table'>
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Character Name</th>
+                        <th>Role</th>
+                        <th>Realm (optional)</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% set i = 1 %}
+                    {% for member in guild.members %}
+                        <tr>
+                            <td>{{ i }}</td>
+                            <td><input type='text' name="name_{{ i }}" class="form-control input-sm" placeholder="Name"
+                                       value="{{ member.name }}"></td>
+                            <td>
+                                <select name="role_{{ i }}" class="form-control input-sm">
+                                    {% for role in roles %}
+                                        <option value="{{ role.id }}"
+                                                {% if role.id == member.role.id %}
+                                                    selected
+                                                {% endif %}
+                                        >
+                                            {{ role.role }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td><input type="text" id="realms" name="realm_{{ i }}" class="form-control input-sm realms"
+                                       placeholder="Realm (optional)"
+                                       value="{{ member.realm.name }} ({{ member.realm.region }})"></td>
+                            <td></td>
+                            {#todo connect this to python script#}
+                        </tr>
+                        {% set i = i + 1 %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(function () {
+            var availableRealms = [
+                "ActionScript",
+                "AppleScript",
+                "Asp",
+                "BASIC",
+                "C",
+                "C++",
+                "Clojure",
+                "COBOL",
+                "ColdFusion",
+                "Erlang",
+                "Fortran",
+                "Groovy",
+                "Haskell",
+                "Java",
+                "JavaScript",
+                "Lisp",
+                "Perl",
+                "PHP",
+                "Python",
+                "Ruby",
+                "Scala",
+                "Scheme"];
+            $("#realms").autocomplete({
+                source: availableRealms
+            });
+        });
+    </script>
 {% endblock %}

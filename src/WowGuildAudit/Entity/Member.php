@@ -35,7 +35,8 @@ class Member
     private $guild;
 
     /**
-     * @ORM\Column(type="string", length=40)
+     * @ORM\ManyToOne(targetEntity="EnumRole")
+     * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
      */
     private $role;
 

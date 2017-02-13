@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="wowguildaudit@localhost" uuid="3b97ee8b-324c-4dfd-abe3-4542bb760da8">
+    <data-source source="LOCAL" name="wowguildaudit@localhost" uuid="8a615f55-9b10-4065-9cc4-f2613679f1e5">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>

@@ -1,12 +1,27 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    Managing {{ guild.name }} on  {{ guild.realm.name }} ({{ guild.realm.region }}):
-    <ul>
-        {% for member in guild.members %}
-            <li>
-                {{ member.name }}
-            </li>
-        {% endfor %}
-    </ul>
+    Managing {{ guild.name }} on  {{ guild.realm.name }} ({{ guild.realm.region }})
+    <table class='table'>
+        <thead>
+        <tr>
+            <th></th>
+            <th>Character Name</th>
+            <th>Role</th>
+            <th>Realm (optional)</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for member in guild.members %}
+                <tr>
+                    <td></td>
+                    <td>{{ member.name }}</td>
+                    <td>{{ member.role }}</td>
+                    <td>{{ member.realm.name }} ({{ member.realm.region }})</td>
+                    <td>//todo connect this to python script</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

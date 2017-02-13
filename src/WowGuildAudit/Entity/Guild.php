@@ -29,7 +29,7 @@ class Guild
     private $name;
 
     /**
-     * @ORM\OneToOne(targetEntity="Realm")
+     * @ORM\ManyToOne(targetEntity="Realm")
      * @ORM\JoinColumn(name="realm_id", referencedColumnName="id")
      */
     private $realm;

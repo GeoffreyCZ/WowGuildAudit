@@ -35,6 +35,17 @@ class Member
     private $guild;
 
     /**
+     * @ORM\Column(type="string", length=40)
+     */
+    private $role;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Realm")
+     * @ORM\JoinColumn(name="realm_id", referencedColumnName="id")
+     */
+    private $realm;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -81,4 +92,37 @@ class Member
     {
         $this->guild = $guild;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param mixed $role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRealm()
+    {
+        return $this->realm;
+    }
+
+    /**
+     * @param mixed $realm
+     */
+    public function setRealm($realm)
+    {
+        $this->realm = $realm;
+    }
+
 }

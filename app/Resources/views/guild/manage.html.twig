@@ -1,7 +1,28 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+    <script>
+        $(function () {
+            var availibleRealms = [
+                {% for realm in realms %}
+                "{{ realm.name|raw }} ({{ realm.region }})",
+                {% endfor %}
+            ];
+            $("#realm").autocomplete({
+                source: availibleRealms
+            });
+        });
+    </script>
+{% endblock %}
 {% block body %}
-    Managing {{ guild.name }} on  {{ guild.realm.name }} ({{ guild.realm.region }})
+    <header>
+        <div class='header-content'>
+            <div class='header-content-inner'>
+                <h2>Managing {{ guild.name }} on {{ guild.realm.name }} ({{ guild.realm.region }})</h2>
+                <p><a class='btn btn-primary btn-xl page-scroll' href='#services'>Add / Remove Members</a></p>
+            </div>
+        </div>
+    </header>
     <section id='services'>
         <div class='container'>
             <div class='col-lg-8 col-lg-offset-2 text-center'>
@@ -35,7 +56,7 @@
                                     {% endfor %}
                                 </select>
                             </td>
-                            <td><input type="text" id="realms" name="realm_{{ i }}" class="form-control input-sm realms"
+                            <td><input type="text" id="realm" name="realm_{{ i }}" class="form-control input-sm"
                                        placeholder="Realm (optional)"
                                        value="{{ member.realm.name }} ({{ member.realm.region }})"></td>
                             <td></td>
@@ -49,36 +70,4 @@
             </form>
         </div>
     </section>
-{% endblock %}
-{% block javascripts %}
-    <script>
-        $(function () {
-            var availableRealms = [
-                "ActionScript",
-                "AppleScript",
-                "Asp",
-                "BASIC",
-                "C",
-                "C++",
-                "Clojure",
-                "COBOL",
-                "ColdFusion",
-                "Erlang",
-                "Fortran",
-                "Groovy",
-                "Haskell",
-                "Java",
-                "JavaScript",
-                "Lisp",
-                "Perl",
-                "PHP",
-                "Python",
-                "Ruby",
-                "Scala",
-                "Scheme"];
-            $("#realms").autocomplete({
-                source: availableRealms
-            });
-        });
-    </script>
 {% endblock %}

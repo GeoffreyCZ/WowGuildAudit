@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1 id="homeHeading">Track New Guild</h1>
+                <form class="form-horizontal" role="form" method="post" action="create_guild.php">
+                    <div class="input-group">
+
+                        <select name='guild_region' class='form-control input-sm' placeholder='Region'>
+                            <option>EU</option>
+                            <option>US</option>
+                        </select>
+
+                        <span class="input-group-btn" style="width:5px;"></span>
+                        <input type="text" name="guild_realm" class="form-control input-sm" placeholder="Guild Realm" ,
+                               value=""/>
+                        <span class="input-group-btn" style="width:5px;"></span>
+                        <input type="text" name="guild_name" class="form-control input-sm" placeholder="Guild Name" ,
+                               value=""/>
+                    </div>
+                    <p><input type='submit' class='btn btn-primary btn-xl page-scroll' value='Track this Guild'></p>
+                </form>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+

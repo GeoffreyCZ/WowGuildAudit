@@ -12,6 +12,7 @@ use WowGuildAudit\Entity\EnumRole;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use WowGuildAudit\Entity\Guild;
+use WowGuildAudit\Entity\Realm;
 
 /**
  * Class GuildController
@@ -34,16 +35,25 @@ class GuildController extends Controller
      * Renders guild management page with all members
      * @param $guildName string Name of the managed guild from the url
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/guild/{guildName}", name="manage_guild")
+     * @Route("/manage-guild/{guildName}", name="manage_guild")
      */
     public function manageGuildAction($guildName)
     {
         $guild = $this->getDoctrine()->getRepository(Guild::class)->findOneBy(array('name' => $guildName));
         $roles = $this->getDoctrine()->getRepository(EnumRole::class)->findAll();
+        $realms = $this->getDoctrine()->getRepository(Realm::class)->findAll();
         //todo proper error message when no guild found
         return $this->render('guild/manage.html.twig', ['guild' => $guild,
-            'roles' => $roles]);
+            'roles' => $roles, 'realms' => $realms]);
 
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/new-guild", name="new_guild")
+     */
+    public function newGuildAction() {
+        return $this->render('guild/new.html.twig');
     }
 
 }

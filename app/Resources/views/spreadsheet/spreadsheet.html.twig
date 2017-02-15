@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1 id="homeHeading">The Spreadsheet</h1>
+
+                <hr/>
+                <p>You can view a demo version of the Audit Spreadsheet here or create a copy to track your own guild! If
+                    you want to track your own guild you will first need a key code, which you can get <a href="{{ path('new_guild') }}">here</a>.
+                    The spreadsheet should never be edited, if you wish to add or remove characters you can do it using <a
+                            href="{{ path('manage_guild') }}">this</a> page on the website. Characters will then appear in the spreadsheet
+                    automatically.</p>
+
+                <p><a class="btn btn-primary btn-xl page-scroll" href="demo" target="_blank">View Demo Spreadsheet</a>&nbsp;&nbsp;&nbsp;<a
+                            class="btn btn-primary btn-xl page-scroll" href="copy" target="_blank">Get Spreadsheet Copy</a></p>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+

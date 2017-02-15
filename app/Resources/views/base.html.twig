@@ -9,6 +9,7 @@
     <link href="{{ asset('css/creative.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('css/bootstrap-editable.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('css/magnific-popup.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
           rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic"
@@ -16,6 +17,25 @@
     <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+    {% if realms is defined %}
+        <script>
+            $(function () {
+                var availibleRealms = [
+                    {% for realm in realms %}
+                    "{{ realm.name|raw }} ({{ realm.region }})",
+                    {% endfor %}
+                ];
+                $("#realm").autocomplete({
+                    source: function (request, response) {
+                        var results = $.ui.autocomplete.filter(availibleRealms, request.term);
+                        response(results.slice(0, 10));
+                    }
+                });
+            });
+        </script>
+    {% endif %}
+
     {% block javascripts %}
     {% endblock %}
 </head>
@@ -26,16 +46,16 @@
             <button class="navbar-toggle collapsed" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse"
                     type="button"><span class="sr-only">Toggle navigation</span> Menu
             </button>
-            <a class="navbar-brand page-scroll" href="index.html">Guild Audit</a></div>
+            <a class="navbar-brand page-scroll" href="{{ path('homepage') }}">Guild Audit</a></div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a class="page-scroll" href="">Spreadsheet</a></li>
-                <li><a class="page-scroll" href="">New Guild</a></li>
-                <li><a class="page-scroll" href="manage-guild">Manage Guild</a></li>
+                <li><a class="page-scroll" href="spreadsheet">Spreadsheet</a></li>
+                <li><a class="page-scroll" href="{{ path('new_guild') }}">New Guild</a></li>
+                <li><a class="page-scroll" href="{{ path('manage_guild') }}">Manage Guild</a></li>
                 <li><a class="page-scroll" href="https://discord.gg/86eUAFz" target="_blank">Discord</a></li>
-                <li><a class="page-scroll" href="">FAQ</a></li>
-                <li><a class="page-scroll" href="">Support</a></li>
+                <li><a class="page-scroll" href="#">FAQ</a></li>
+                <li><a class="page-scroll" href="#">Support</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse --></div>

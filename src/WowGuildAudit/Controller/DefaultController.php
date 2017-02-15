@@ -18,4 +18,12 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }
+
+    /**
+     * Renders spreadsheet page
+     * @Route("/spreadsheet", name="spreadsheet")
+     */
+    public function spreadsheetAction() {
+        return $this->render('spreadsheet/spreadsheet.html.twig');
+    }
 }

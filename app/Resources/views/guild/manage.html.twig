@@ -1,18 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block javascripts %}
-    <script>
-        $(function () {
-            var availibleRealms = [
-                {% for realm in realms %}
-                "{{ realm.name|raw }} ({{ realm.region }})",
-                {% endfor %}
-            ];
-            $("#realm").autocomplete({
-                source: availibleRealms
-            });
-        });
-    </script>
 {% endblock %}
 {% block body %}
     <header>
@@ -67,7 +55,6 @@
                     </tbody>
                 </table>
             </div>
-            </form>
         </div>
     </section>
 {% endblock %}

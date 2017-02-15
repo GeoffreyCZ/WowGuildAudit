@@ -41,7 +41,7 @@ class Guild
     /**
      * @ORM\Column(type="string", length=10)
      */
-    private $key;
+    private $guildKey;
 
     /**
      * @return mixed
@@ -110,17 +110,17 @@ class Guild
     /**
      * @return mixed
      */
-    public function getKey()
+    public function getGuildKey()
     {
-        return $this->key;
+        return $this->guildKey;
     }
 
     /**
-     * @param mixed $key
+     * @param mixed $guildKey
      */
-    public function setKey($key)
+    public function setGuildKey($guildKey)
     {
-        $this->key = $key;
+        $this->guildKey = $guildKey;
     }
 
 }

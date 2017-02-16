@@ -1,25 +1,43 @@
 <?php
-
 /**
  * Created by PhpStorm.
  * User: Michal Kroupa
  * Date: 15.02.2017
- * Time: 14:58
+ * Time: 19:13
  */
 
 namespace WowGuildAudit\Form;
 
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use WowGuildAudit\Entity\Guild;
 
 class GuildType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder
-            ->add('realm', TextType::class, ['label' => false, 'required' => true, 'attr' => ['placeholder' => 'Guild Realm', 'class' => 'form-control input-sm']])
-            ->add('name', TextType::class, ['label' => false, 'required' => true, 'attr' => ['placeholder' => 'Guild Name', 'class' => 'form-control input-sm']])
-            ->add('track', SubmitType::class, ['label' => 'Track this guild', 'attr' => ['class' => 'btn btn-primary btn-xl page-scroll']]);
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder->add('members', CollectionType::class, [
+            'label' => false,
+            'entry_type' => MemberType::class,
+            'allow_add' => true,
+            'by_reference' => false,
+            'allow_delete' => true
+        ])
+            ->add('save changes', SubmitType::class, [
+                'attr' => array(
+                    'class' => 'btn btn-primary btn-xl page-scroll'
+                )
+            ]);
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => Guild::class,
+        ));
     }
 }

@@ -6,3 +6,8 @@
     margin-right: auto;
     margin-left: auto;
 }
+
+li .members *{
+    display:inline-block;
+    margin:0 10px;
+}

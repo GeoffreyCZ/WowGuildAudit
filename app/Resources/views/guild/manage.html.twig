@@ -1,59 +1,49 @@
 {% extends 'base.html.twig' %}
 
 {% block javascripts %}
+    <script src="{{ asset('js/form-collections.js') }}"></script>
 {% endblock %}
 {% block body %}
+
     <header>
         <div class='header-content'>
             <div class='header-content-inner'>
                 <h2>Managing {{ guild.name }} on {{ guild.realm.name }} ({{ guild.realm.region }})</h2>
+                <h3>Keycode: {{ guild.guildkey }}</h3>
                 <p><a class='btn btn-primary btn-xl page-scroll' href='#services'>Add / Remove Members</a></p>
             </div>
         </div>
     </header>
     <section id='services'>
+
+        {{ form_start(form) }}
         <div class='container'>
             <div class='col-lg-8 col-lg-offset-2 text-center'>
                 <table class='table'>
                     <thead>
                     <tr>
-                        <th></th>
                         <th>Character Name</th>
-                        <th>Role</th>
                         <th>Realm (optional)</th>
+                        <th>Role</th>
                         <th>Status</th>
+                        <th>Remove</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    {% set i = 1 %}
-                    {% for member in guild.members %}
+                    <tbody class="members" data-prototype="
+                        {% filter escape %}
+                            {{ include('prototype.html.twig', { 'form': form.members.vars.prototype}) }}
+                        {% endfilter %}">
+                    {% for member in form.members %}
                         <tr>
-                            <td>{{ i }}</td>
-                            <td><input type='text' name="name_{{ i }}" class="form-control input-sm" placeholder="Name"
-                                       value="{{ member.name }}"></td>
-                            <td>
-                                <select name="role_{{ i }}" class="form-control input-sm">
-                                    {% for role in roles %}
-                                        <option value="{{ role.id }}"
-                                                {% if role.id == member.role.id %}
-                                                    selected
-                                                {% endif %}
-                                        >
-                                            {{ role.role }}
-                                        </option>
-                                    {% endfor %}
-                                </select>
-                            </td>
-                            <td><input type="text" id="realm" name="realm_{{ i }}" class="form-control input-sm"
-                                       placeholder="Realm (optional)"
-                                       value="{{ member.realm.name }} ({{ member.realm.region }})"></td>
+                            <td>{{ form_row(member.name) }}</td>
+                            <td>{{ form_row(member.realm) }}</td>
+                            <td>{{ form_row(member.role) }}</td>
                             <td></td>
-                            {#todo connect this to python script#}
                         </tr>
-                        {% set i = i + 1 %}
                     {% endfor %}
                     </tbody>
                 </table>
+                {{ form_end(form) }}
             </div>
         </div>
     </section>

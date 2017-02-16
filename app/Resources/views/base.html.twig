@@ -20,19 +20,28 @@
 
     {% if realms is defined %}
         <script>
+            var availibleRealms = [
+                {% for realm in realms %}
+                "{{ realm.name|raw }} ({{ realm.region }})",
+                {% endfor %}
+            ];
             $(function () {
-                var availibleRealms = [
-                    {% for realm in realms %}
-                    "{{ realm.name|raw }} ({{ realm.region }})",
-                    {% endfor %}
-                ];
-                $("#realm").autocomplete({
+                $(".realm").autocomplete({
                     source: function (request, response) {
                         var results = $.ui.autocomplete.filter(availibleRealms, request.term);
                         response(results.slice(0, 10));
                     }
                 });
             });
+            $(document).on('click', '.add_member_link', function () {
+                $(".realm").autocomplete({
+                    source: function (request, response) {
+                        var results = $.ui.autocomplete.filter(availibleRealms, request.term);
+                        response(results.slice(0, 10));
+                    }
+                });
+            });
+
         </script>
     {% endif %}
 
@@ -54,7 +63,7 @@
                 <li><a class="page-scroll" href="{{ path('new_guild') }}">New Guild</a></li>
                 <li><a class="page-scroll" href="{{ path('manage_guild') }}">Manage Guild</a></li>
                 <li><a class="page-scroll" href="https://discord.gg/86eUAFz" target="_blank">Discord</a></li>
-                <li><a class="page-scroll" href="#">FAQ</a></li>
+                <li><a class="page-scroll" href="{{ path('faq') }}">FAQ</a></li>
                 <li><a class="page-scroll" href="#">Support</a></li>
             </ul>
         </div>

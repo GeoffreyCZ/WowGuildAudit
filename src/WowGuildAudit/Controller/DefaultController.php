@@ -26,4 +26,12 @@ class DefaultController extends Controller
     public function spreadsheetAction() {
         return $this->render('spreadsheet/spreadsheet.html.twig');
     }
+
+    /**
+     * Renders FAQ page
+     * @Route("/faq", name="faq")
+     */
+    public function faqAction() {
+        return $this->render('default/faq.html.twig');
+    }
 }

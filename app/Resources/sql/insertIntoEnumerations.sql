@@ -1,4 +1,4 @@
-INSERT INTO enum_role (role) VALUES ("tank");
-INSERT INTO enum_role (role) VALUES ("healer");
-INSERT INTO enum_role (role) VALUES ("ranged dps");
-INSERT INTO enum_role (role) VALUES ("melee dps");
+INSERT INTO enum_role (role) VALUES ("Tank");
+INSERT INTO enum_role (role) VALUES ("Healer");
+INSERT INTO enum_role (role) VALUES ("Ranged DD");
+INSERT INTO enum_role (role) VALUES ("Melee DD");

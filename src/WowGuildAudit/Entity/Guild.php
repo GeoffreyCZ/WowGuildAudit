@@ -8,6 +8,7 @@
 
 namespace WowGuildAudit\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,13 +36,19 @@ class Guild
     private $realm;
 
     /**
-     * @ORM\OneToMany(targetEntity="Member", mappedBy="guild")
+     * @ORM\OneToMany(targetEntity="Member", mappedBy="guild", cascade={"persist"})
      */
     private $members;
     /**
      * @ORM\Column(type="string", length=10)
      */
     private $guildKey;
+
+    public function __construct()
+    {
+        $this->members = new ArrayCollection();
+    }
+
 
     /**
      * @return mixed
@@ -121,6 +128,17 @@ class Guild
     public function setGuildKey($guildKey)
     {
         $this->guildKey = $guildKey;
+    }
+
+    public function addMember(Member $member) {
+        $member->setGuild($this);
+
+        $this->members->add($member);
+    }
+
+    public function removeMember(Member $member)
+    {
+        $this->members->removeElement($member);
     }
 
 }

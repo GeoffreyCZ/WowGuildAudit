@@ -60,4 +60,9 @@ class EnumRole
     {
         $this->role = $role;
     }
+
+    public function __toString()
+    {
+        return $this->role;
+    }
 }

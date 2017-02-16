@@ -81,5 +81,10 @@ class Realm
         $this->region = $region;
     }
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
 
 }

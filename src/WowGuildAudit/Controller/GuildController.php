@@ -9,6 +9,7 @@
 namespace WowGuildAudit\Controller;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\DBAL\Driver\PDOException;
 use Symfony\Component\HttpFoundation\Request;
 use WowGuildAudit\Entity\EnumRole;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -60,15 +61,25 @@ class GuildController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            //todo check if realm exists
-            //todo check if user is not already in the guild
-            //todo check if two new users are not the same
             foreach ($guild->getMembers() as $member) {
+                /** @var $member Member */
                 $role = $this->getDoctrine()->getRepository(EnumRole::class)->findOneBy(['role' => $member->getRole()]);
                 $realm = $this->getDoctrine()->getRepository(Realm::class)->findOneBy(array(
                     'name' => substr($member->getRealm(), 0, -4),
                     'region' => substr($member->getRealm(), -3, 2)
                 ));
+                if ($realm === null) {
+                    $this->addFlash(
+                        'danger',
+                        'Member ' . $member->getName() . '\'s realm was not found, choose one from the list, please.'
+                    );
+                    return $this->render('guild/manage.html.twig', [
+                        'guild' => $guild,
+                        'roles' => $roles,
+                        'realms' => $realms,
+                        'form' => $form->createView()
+                    ]);
+                }
                 $member->setRole($role);
                 $member->setRealm($realm);
             }
@@ -80,11 +91,28 @@ class GuildController extends Controller
                     $entityManager->remove($originalMember);
                 }
             }
-            $entityManager->persist($guild);
-            $entityManager->flush();
+            try {
+                $entityManager->persist($guild);
+                $entityManager->flush();
+            } catch(\Exception $exception){
+                $this->addFlash(
+                    'danger',
+                    'Error! You can\'t add one member twice in one guild'
+                );
+
+                return $this->render('guild/manage.html.twig', [
+                    'guild' => $guild,
+                    'roles' => $roles,
+                    'realms' => $realms,
+                    'form' => $form->createView()
+                ]);
+            };
+            $this->addFlash(
+                'success',
+                'Your changes were successfully saved!'
+            );
         }
 
-        //todo proper error message when no guild found
         return $this->render('guild/manage.html.twig', [
             'guild' => $guild,
             'roles' => $roles,
@@ -128,8 +156,11 @@ class GuildController extends Controller
                 $entityManager->flush();
                 return $this->redirectToRoute('manage_guild', array('guild' => $guild));
             } else {
+                $this->addFlash(
+                    'danger',
+                    'Guild already exists!'
+                );
                 return $this->render('guild/new.html.twig', [
-                    'error' => true,
                     'realms' => $realms,
                     'form' => $form->createView()
                 ]);
@@ -148,7 +179,7 @@ class GuildController extends Controller
      */
     private function getAllRealms()
     {
-        return $this->getDoctrine()->getRepository(Realm::class)->findAll();
+        return $realms = $this->getDoctrine()->getRepository(Realm::class)->findAll();
     }
 
 }

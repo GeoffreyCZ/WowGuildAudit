@@ -8,6 +8,15 @@
     <header>
         <div class='header-content'>
             <div class='header-content-inner'>
+                {% for type, messages in app.session.flashBag.all() %}
+                    {% for message in messages %}
+                        <div class="saved alert alert-{{ type }} fade in alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span
+                                        aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
                 <h2>Managing {{ guild.name }} on {{ guild.realm.name }} ({{ guild.realm.region }})</h2>
                 <h3>Keycode: {{ guild.guildkey }}</h3>
                 <p><a class='btn btn-primary btn-xl page-scroll' href='#services'>Add / Remove Members</a></p>
@@ -15,26 +24,34 @@
         </div>
     </header>
     <section id='services'>
+        <div id="dialog">
+            <p>You have reached the maximum of 30 guild members.</p>
+            <p>Press Esc to dismiss the dialog.</p>
+        </div>
 
         {{ form_start(form) }}
         <div class='container'>
-            <div class='col-lg-8 col-lg-offset-2 text-center'>
+            <div class='col-lg-10 col-lg-offset-1 text-center'>
                 <table class='table'>
                     <thead>
                     <tr>
+                        <th>#</th>
                         <th>Character Name</th>
                         <th>Realm (optional)</th>
                         <th>Role</th>
                         <th>Status</th>
-                        <th>Remove</th>
+                        <th>Mark for removal</th>
                     </tr>
                     </thead>
                     <tbody class="members" data-prototype="
                         {% filter escape %}
                             {{ include('prototype.html.twig', { 'form': form.members.vars.prototype}) }}
                         {% endfilter %}">
+                    {% set i = 0 %}
                     {% for member in form.members %}
+                        {% set i = i + 1 %}
                         <tr>
+                            <td></td>
                             <td>{{ form_row(member.name) }}</td>
                             <td>{{ form_row(member.realm) }}</td>
                             <td>{{ form_row(member.role) }}</td>

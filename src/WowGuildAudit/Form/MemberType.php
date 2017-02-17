@@ -11,6 +11,7 @@ namespace WowGuildAudit\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -71,7 +72,8 @@ class MemberType extends AbstractType
                         'label' => false,
                         'attr' => array(
                             'class' => 'form-control input-sm realm'
-                        )
+                        ),
+                        'data' => $member->getRealm()->getName() . ' (' . $member->getRealm()->getRegion() .')'
                     ));
             }
 

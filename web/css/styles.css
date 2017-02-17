@@ -1,4 +1,4 @@
-.center{
+.center {
     text-align: center;
 }
 
@@ -7,7 +7,23 @@
     margin-left: auto;
 }
 
-li .members *{
-    display:inline-block;
-    margin:0 10px;
+li .members * {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.dlg-no-close .ui-dialog-titlebar-close {
+    display: none;
+}
+
+.dlg-no-title .ui-dialog-titlebar {
+    display: none;
+}
+
+.saved {
+    z-index: 1000;
+}
+
+#dialog {
+    display: none;
 }

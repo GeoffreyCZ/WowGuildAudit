@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="Member")
+ * @ORM\Table(name="Member", uniqueConstraints={@ORM\UniqueConstraint(name="unique_member", columns={"guild_id", "name", "realm_id"})})
  */
 class Member
 {

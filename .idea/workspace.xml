@@ -2,22 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="597bf402-00dc-4bab-a8e4-55b0da69b681" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/views/default/faq.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/views/prototype.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/WowGuildAudit/Form/MemberType.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/WowGuildAudit/Form/NewGuildType.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/form-collections.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/sql/insertIntoEnumerations.sql" afterPath="$PROJECT_DIR$/app/Resources/sql/insertIntoEnumerations.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/guild/manage.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/guild/manage.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WowGuildAudit/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/src/WowGuildAudit/Controller/DefaultController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/guild/new.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/guild/new.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/prototype.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/prototype.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/services.yml" afterPath="$PROJECT_DIR$/app/config/services.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WowGuildAudit/Controller/GuildController.php" afterPath="$PROJECT_DIR$/src/WowGuildAudit/Controller/GuildController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WowGuildAudit/Entity/EnumRole.php" afterPath="$PROJECT_DIR$/src/WowGuildAudit/Entity/EnumRole.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WowGuildAudit/Entity/Guild.php" afterPath="$PROJECT_DIR$/src/WowGuildAudit/Entity/Guild.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WowGuildAudit/Entity/Realm.php" afterPath="$PROJECT_DIR$/src/WowGuildAudit/Entity/Realm.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WowGuildAudit/Form/GuildType.php" afterPath="$PROJECT_DIR$/src/WowGuildAudit/Form/GuildType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WowGuildAudit/Entity/Member.php" afterPath="$PROJECT_DIR$/src/WowGuildAudit/Entity/Member.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WowGuildAudit/Form/MemberType.php" afterPath="$PROJECT_DIR$/src/WowGuildAudit/Form/MemberType.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/styles.css" afterPath="$PROJECT_DIR$/web/css/styles.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/form-collections.js" afterPath="$PROJECT_DIR$/web/js/form-collections.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -56,10 +51,37 @@
       <file leaf-file-name="GuildController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/WowGuildAudit/Controller/GuildController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="64" column="58" lean-forward="false" selection-start-line="64" selection-start-column="58" selection-end-line="64" selection-end-column="58" />
+            <state relative-caret-position="256">
+              <caret line="62" column="55" lean-forward="false" selection-start-line="62" selection-start-column="55" selection-end-line="62" selection-end-column="55" />
               <folding>
                 <element signature="e#134#182#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wowguildaudit.guild" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/3d7c8050/8a615f55-9b10-4065-9cc4-f2613679f1e5/wowguildaudit.guild">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/guild/new.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="23" column="103" lean-forward="false" selection-start-line="23" selection-start-column="103" selection-end-line="23" selection-end-column="103" />
+              <folding>
+                <element signature="e#765#772#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -68,29 +90,11 @@
       <file leaf-file-name="manage.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/guild/manage.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="33" column="99" lean-forward="false" selection-start-line="33" selection-start-column="99" selection-end-line="33" selection-end-column="99" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="prototype.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/prototype.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="form-collections.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/js/form-collections.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="27" column="53" lean-forward="false" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
-              <folding />
+            <state relative-caret-position="238">
+              <caret line="18" column="28" lean-forward="false" selection-start-line="9" selection-start-column="46" selection-end-line="18" selection-end-column="28" />
+              <folding>
+                <element signature="e#629#636#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -98,8 +102,8 @@
       <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="27" column="27" lean-forward="false" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
+            <state relative-caret-position="493">
+              <caret line="29" column="20" lean-forward="false" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -120,46 +124,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testInsert.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/sql/testData/testInsert.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="74" lean-forward="false" selection-start-line="6" selection-start-column="74" selection-end-line="6" selection-end-column="74" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Member.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/WowGuildAudit/Entity/Member.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2057">
-              <caret line="126" column="5" lean-forward="false" selection-start-line="126" selection-start-column="5" selection-end-line="126" selection-end-column="5" />
+            <state relative-caret-position="153">
+              <caret line="14" column="53" lean-forward="false" selection-start-line="14" selection-start-column="53" selection-end-line="14" selection-end-column="53" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MemberType.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/WowGuildAudit/Form/MemberType.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="42" column="17" lean-forward="false" selection-start-line="42" selection-start-column="17" selection-end-line="42" selection-end-column="17" />
-              <folding>
-                <element signature="e#129#169#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GuildType.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/WowGuildAudit/Form/GuildType.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="23" column="29" lean-forward="false" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
-              <folding>
-                <element signature="e#129#169#0#PHP" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -185,8 +155,8 @@
       <find>Tag</find>
       <find>speaker</find>
       <find>li&gt;</find>
-      <find>Li</find>
       <find>li</find>
+      <find>Li</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;</replace>
@@ -225,14 +195,11 @@
         <option value="$PROJECT_DIR$/app/Resources/views/default/spreadsheet.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/default/index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/spreadsheet/spreadsheet.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/guild/new.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/default/faq.html.twig" />
         <option value="$PROJECT_DIR$/src/WowGuildAudit/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/src/WowGuildAudit/Form/NewGuildType.php" />
         <option value="$PROJECT_DIR$/web/js/formCollections.js" />
         <option value="$PROJECT_DIR$/src/WowGuildAudit/Entity/Guild.php" />
-        <option value="$PROJECT_DIR$/web/css/styles.css" />
-        <option value="$PROJECT_DIR$/src/WowGuildAudit/Entity/Member.php" />
         <option value="$PROJECT_DIR$/src/WowGuildAudit/Entity/EnumRole.php" />
         <option value="$PROJECT_DIR$/src/WowGuildAudit/Entity/Realm.php" />
         <option value="$PROJECT_DIR$/src/WowGuildAudit/Form/GuildType.php" />
@@ -240,11 +207,17 @@
         <option value="$PROJECT_DIR$/app/Resources/sql/testData/testInsert.sql" />
         <option value="$PROJECT_DIR$/app/Resources/views/form/member.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/guild/prototype.html.twig" />
-        <option value="$PROJECT_DIR$/src/WowGuildAudit/Form/MemberType.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/guild/manage.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/prototype.html.twig" />
+        <option value="$PROJECT_DIR$/web/js/jquery.flash.js" />
+        <option value="$PROJECT_DIR$/web/css/styles.css" />
         <option value="$PROJECT_DIR$/web/js/form-collections.js" />
+        <option value="$PROJECT_DIR$/app/Resources/views/guild/manage.html.twig" />
+        <option value="$PROJECT_DIR$/src/WowGuildAudit/Form/MemberType.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/guild/new.html.twig" />
+        <option value="$PROJECT_DIR$/src/WowGuildAudit/Entity/Member.php" />
+        <option value="$PROJECT_DIR$/src/WowGuildAudit/EventListener/PDOExceptionListener.php" />
+        <option value="$PROJECT_DIR$/app/config/services.yml" />
         <option value="$PROJECT_DIR$/src/WowGuildAudit/Controller/GuildController.php" />
       </list>
     </option>
@@ -645,8 +618,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -657,14 +630,14 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\XAMPP\htdocs\wowGuildAudit\app\Resources\views\default" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\XAMPP\htdocs\wowGuildAudit\app\Resources\views" />
       <recent name="D:\XAMPP\htdocs\wowGuildAudit\app\Resources\views\guild" />
       <recent name="D:\XAMPP\htdocs\wowGuildAudit\app\Resources\views\spreadsheet" />
       <recent name="D:\XAMPP\htdocs\wowGuildAudit\src\WowGuildAudit\Entity" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\XAMPP\htdocs\wowGuildAudit\app\Resources\views\default" />
     </key>
   </component>
   <component name="RunManager">
@@ -743,22 +716,23 @@
       <workItem from="1487002231906" duration="16337000" />
       <workItem from="1487163494785" duration="15600000" />
       <workItem from="1487237750591" duration="21215000" />
-      <workItem from="1487268438041" duration="4938000" />
+      <workItem from="1487268438041" duration="9525000" />
+      <workItem from="1487327821706" duration="19262000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64278000" />
+    <option name="totallyTimeSpent" value="88127000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33694476" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1705757" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17217484" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21428572" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -769,8 +743,8 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33694476" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -785,8 +759,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="dbDummy://dbtable:/3d7c8050/3b97ee8b-324c-4dfd-abe3-4542bb760da8/wowguildaudit.guild" />
-    <entry file="dbDummy://dbtable:/3d7c8050/3b97ee8b-324c-4dfd-abe3-4542bb760da8/wowguildaudit.guild" />
     <entry file="dbDummy://dbtable:/3d7c8050/3b97ee8b-324c-4dfd-abe3-4542bb760da8/wowguildaudit.guild" />
     <entry file="dbDummy://dbtable:/3d7c8050/3b97ee8b-324c-4dfd-abe3-4542bb760da8/wowguildaudit.guild" />
     <entry file="dbDummy://dbtable:/3d7c8050/3b97ee8b-324c-4dfd-abe3-4542bb760da8/wowguildaudit.member" />
@@ -812,13 +784,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/security.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/services.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -864,6 +829,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="7640" lean-forward="false" selection-start-line="4" selection-start-column="7640" selection-end-line="4" selection-end-column="7640" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -871,6 +837,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="28893" lean-forward="false" selection-start-line="3" selection-start-column="28893" selection-end-line="3" selection-end-column="28893" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -878,6 +845,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
           <caret line="662" column="1" lean-forward="false" selection-start-line="662" selection-start-column="1" selection-end-line="662" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -885,6 +853,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5950">
           <caret line="350" column="31" lean-forward="false" selection-start-line="350" selection-start-column="31" selection-end-line="350" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -955,25 +924,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/3d7c8050/8a615f55-9b10-4065-9cc4-f2613679f1e5/wowguildaudit.guild">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/guild/new.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="70" lean-forward="false" selection-start-line="19" selection-start-column="70" selection-end-line="20" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/WowGuildAudit/Form/NewGuildType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
@@ -985,17 +935,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="11" lean-forward="false" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/js/jquery-3.1.1.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="3" column="19242" lean-forward="false" selection-start-line="3" selection-start-column="19242" selection-end-line="3" selection-end-column="19242" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1011,14 +955,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="439">
           <caret line="61" column="5" lean-forward="false" selection-start-line="61" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/WowGuildAudit/Entity/Realm.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="72" column="29" lean-forward="false" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -1051,14 +987,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/WowGuildAudit/Entity/Member.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2057">
-          <caret line="126" column="5" lean-forward="false" selection-start-line="126" selection-start-column="5" selection-end-line="126" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/sql/insertIntoEnumerations.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -1071,7 +999,7 @@
         <state relative-caret-position="221">
           <caret line="23" column="29" lean-forward="false" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
           <folding>
-            <element signature="e#129#169#0#PHP" expanded="true" />
+            <element signature="e#129#169#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1085,20 +1013,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/jquery.flash.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="45" column="57" lean-forward="false" selection-start-line="45" selection-start-column="55" selection-end-line="45" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="18" lean-forward="false" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WowGuildAudit/Entity/Realm.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="861">
+          <caret line="72" column="29" lean-forward="false" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/WowGuildAudit/Form/MemberType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="42" column="17" lean-forward="false" selection-start-line="42" selection-start-column="17" selection-end-line="42" selection-end-column="17" />
+        <state relative-caret-position="745">
+          <caret line="75" column="104" lean-forward="false" selection-start-line="75" selection-start-column="104" selection-end-line="75" selection-end-column="104" />
           <folding>
             <element signature="e#129#169#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/guild/manage.html.twig">
+    <entry file="file://$PROJECT_DIR$/web/js/form-collections.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="33" column="99" lean-forward="false" selection-start-line="33" selection-start-column="99" selection-end-line="33" selection-end-column="99" />
+        <state relative-caret-position="95">
+          <caret line="13" column="20" lean-forward="false" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -1106,23 +1058,56 @@
     <entry file="file://$PROJECT_DIR$/app/Resources/views/prototype.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/form-collections.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="27" column="53" lean-forward="false" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
+          <caret line="0" column="3" lean-forward="false" selection-start-line="0" selection-start-column="3" selection-end-line="0" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="27" column="27" lean-forward="false" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
+        <state relative-caret-position="493">
+          <caret line="29" column="20" lean-forward="false" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/guild/manage.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="18" column="28" lean-forward="false" selection-start-line="9" selection-start-column="46" selection-end-line="18" selection-end-column="28" />
+          <folding>
+            <element signature="e#629#636#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/guild/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="103" lean-forward="false" selection-start-line="23" selection-start-column="103" selection-end-line="23" selection-end-column="103" />
+          <folding>
+            <element signature="e#765#772#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/3d7c8050/8a615f55-9b10-4065-9cc4-f2613679f1e5/wowguildaudit.guild">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WowGuildAudit/Entity/Member.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="14" column="53" lean-forward="false" selection-start-line="14" selection-start-column="53" selection-end-line="14" selection-end-column="53" />
           <folding />
         </state>
       </provider>
@@ -1140,10 +1125,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/WowGuildAudit/EventListener/PDOExceptionListener.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/services.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="80" lean-forward="false" selection-start-line="8" selection-start-column="80" selection-end-line="8" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/WowGuildAudit/Controller/GuildController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="64" column="58" lean-forward="false" selection-start-line="64" selection-start-column="58" selection-end-line="64" selection-end-column="58" />
+        <state relative-caret-position="256">
+          <caret line="62" column="55" lean-forward="false" selection-start-line="62" selection-start-column="55" selection-end-line="62" selection-end-column="55" />
           <folding>
             <element signature="e#134#182#0#PHP" expanded="true" />
           </folding>

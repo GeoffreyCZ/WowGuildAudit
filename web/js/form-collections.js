@@ -1,67 +1,100 @@
 var $collectionHolder;
 
-// setup an "add a member" link
-var $addMemberLink = $('<td colspan="6"><a href="#" class="add_member_link">Add a member</a></td>');
-var $newLinkLi = $('<tr></tr>').append($addMemberLink);
+var $addMemberLink = $('<td colspan="6" class="add_member_link"><a href="#" class="add_member_link">Add a member</a></td>');
+var $newLinkTr = $('<tr class="add_member_row"></tr>').append($addMemberLink);
 
-jQuery(document).ready(function() {
-    // Get the ul that holds the collection of members
+function hasClass(target, className) {
+    return new RegExp('(\\s|^)' + className + '(\\s|$)').test(target.className);
+}
+
+jQuery(document).ready(function () {
+
+    $("#dialog").dialog({
+        autoOpen: false,
+        modal: true,
+        dialogClass: "dlg-no-title"
+    });
     $collectionHolder = $('tbody.members');
 
-    // add a delete link to all of the existing member form li elements
-    $collectionHolder.find('tr').each(function() {
+    $collectionHolder.find('tr').each(function () {
         addMemberFormDeleteLink($(this));
     });
 
-    // add the "add a member" anchor and li to the members ul
-    $collectionHolder.append($newLinkLi);
+    $collectionHolder.append($newLinkTr);
 
-    // count the current form inputs we have (e.g. 2), use that as the new
-    // index when inserting a new item (e.g. 2)
     $collectionHolder.data('index', $collectionHolder.find(':input').length);
 
-    $addMemberLink.on('click', function(e) {
-        // prevent the link from creating a "#" on the URL
-        e.preventDefault();
+    $addMemberLink.on('click', function (e) {
 
-        // add a new member form (see next code block)
-        addMemberForm($collectionHolder, $newLinkLi);
+        e.preventDefault();
+        var rowCount = $('tbody tr').length;
+        if (rowCount <= 30) {
+            addMemberForm($collectionHolder, $newLinkTr);
+        } else {
+            $("#dialog").dialog("open");
+        }
+        var table = document.getElementsByTagName('tbody')[0],
+            rows = table.getElementsByTagName('tr'),
+            text = 'textContent' in document ? 'textContent' : 'innerText';
+        var j = 1;
+        for (var i = 0, len = rows.length; i < len - 1; i++) {
+            if (!(hasClass(rows[i], 'not-count'))) {
+                rows[i].children[0][text] = j;
+                j++;
+            }
+        }
     });
+    addNumberOfRows();
 });
 
 
-
-function addMemberForm($collectionHolder, $newLinkLi) {
-    // Get the data-prototype explained earlier
+function addMemberForm($collectionHolder, $newLinkTr) {
     var prototype = $collectionHolder.data('prototype');
 
-    // get the new index
     var index = $collectionHolder.data('index');
 
-    // Replace '__name__' in the prototype's HTML to
-    // instead be a number based on how many items we have
     var newForm = prototype.replace(/__name__/g, index);
 
-    // increase the index with one for the next item
     $collectionHolder.data('index', index + 1);
 
-    // Display the form in the page in an li, before the "Add a member" link li
-    var $newFormLi = $('<tr></tr>').append(newForm);
-    $newLinkLi.before($newFormLi);
-    addMemberFormDeleteLink($newFormLi);
+    var $newFormTr = $('<tr></tr>').append(newForm);
+    $newLinkTr.before($newFormTr);
+    addMemberFormDeleteLink($newFormTr);
+
 }
 
+function addMemberFormDeleteLink($memberFormTr) {
+    var $removeFormA = $('<td class="remove-form"><a class="remove-link" href="#">X</a></td>');
+    var $removedFormTr = $('<tr class="not-count"><td colspan="6">Member was marked for removal, save changes for confirmation. <a href="#">Undo</a></td></tr>');
+    $memberFormTr.append($removeFormA);
 
-
-function addMemberFormDeleteLink($memberFormLi) {
-    var $removeFormA = $('<td><a href="#">X</a></td>');
-    $memberFormLi.append($removeFormA);
-
-    $removeFormA.on('click', function(e) {
-        // prevent the link from creating a "#" on the URL
+    $removeFormA.on('click', function (e) {
         e.preventDefault();
-
-        // remove the li for the member form
-        $memberFormLi.remove();
+        $memberFormTr.children().last().remove();
+        $removedFormTr.data('backup', $memberFormTr);
+        $memberFormTr.replaceWith($removedFormTr);
+        addNumberOfRows();
     });
+
+    $removedFormTr.on('click', function (e) {
+        e.preventDefault();
+        $removedFormTr.replaceWith($removedFormTr.data('backup'));
+        addNumberOfRows();
+        addMemberFormDeleteLink($memberFormTr);
+    })
 }
+
+function addNumberOfRows() {
+    var table = document.getElementsByTagName('tbody')[0],
+        rows = table.getElementsByTagName('tr'),
+        text = 'textContent' in document ? 'textContent' : 'innerText';
+    var j = 1;
+    for (var i = 0, len = rows.length; i < len - 1; i++) {
+        if (!(hasClass(rows[i], 'not-count'))) {
+            rows[i].children[0][text] = j;
+            j++;
+        }
+    }
+}
+
+

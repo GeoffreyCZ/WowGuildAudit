@@ -11,13 +11,17 @@
                 <div class="center">
                     {{ form_start(form) }}
                     {{ form_errors(form) }}
-                    {% if error is defined %}
-                        <div class="alert alert-danger">
-                            <strong>Error!</strong> This guild already exists.
-                        </div>
-                    {% endif %}
+                    {% for type, messages in app.session.flashBag.all() %}
+                        {% for message in messages %}
+                            <div class="saved alert alert-{{ type }} fade in alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert"><span
+                                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
                     <div class="input-group center-element">
-                        {{ form_widget(form.realm, {'id': 'realm'}) }}
+                        {{ form_widget(form.realm, {'attr': {'class': 'realm form-control input-sm'}}) }}
                         {{ form_widget(form.name) }}
                     </div>
                     {{ form_widget(form.track) }}

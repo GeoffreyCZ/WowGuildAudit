@@ -72,6 +72,14 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: secured_area
+    user_class: WowGuildAudit\Entity\User
+    from_email:
+        address: awatar.trellac@gmail.com
+        sender_name: Michal
+
 hwi_oauth:
     # list of names of the firewalls in which this bundle is active, this setting MUST be set
     firewall_names: [secured_area]
@@ -85,3 +93,5 @@ hwi_oauth:
             options:
                 csrf: true
             scope:               "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+            paths:
+                email: email

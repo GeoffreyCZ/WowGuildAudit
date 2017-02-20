@@ -83,6 +83,11 @@ fos_user:
 hwi_oauth:
     # list of names of the firewalls in which this bundle is active, this setting MUST be set
     firewall_names: [secured_area]
+    fosub:
+        username_iterations: 30
+        properties:
+            # these properties will be used/redefined later in the custom FOSUBUserProvider service.
+            google: google_id
     connect:
         account_connector: app.provider.oauth
     resource_owners:

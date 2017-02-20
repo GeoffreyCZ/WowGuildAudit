@@ -1,34 +1,45 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/security.html
 security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
 
-    # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_USER
+
     providers:
-        in_memory:
-            memory: ~
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
-            pattern: ^/
-            anonymous: ~
         secured_area:
-            pattern: ^/google/
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                login_path: /login
+                check_path: /login_check
             anonymous: true
-            logout: true
+            logout:
+                path: /logout
+                target: /
+            remember_me:
+                secret:   '%secret%'
+                lifetime: 604800
             oauth:
                 resource_owners:
-                    google:         "/google/login/check"
-                login_path:       /google/login
-                failure_path:     /google/login
-                check_path:       /google/login/check
+                    google:         "/login/check-google"
+                login_path:       /login
+                failure_path:     /login
+                check_path:       /connect_check
+                provider: fos_userbundle
 
                 oauth_user_provider:
                     service: app.provider.oauth
 
     access_control:
-        - { path: ^/google, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/guild, roles: IS_AUTHENTICATED_FULLY }

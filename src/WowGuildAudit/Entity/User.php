@@ -31,22 +31,35 @@ class User extends BaseUser
      *
      * @ORM\Column(name="google_id", type="string", unique=true, nullable=true, length=40)
      */
-    protected $googleId;
+    protected $googleID;
 
     /**
-     * @param string $googleId
+     * @var string
+     *
+     * @ORM\Column(name="google_access_token", type="string", unique=true, nullable=true, length=40)
      */
-    public function setGoogleId($googleId)
+    protected $googleAccessToken;
+
+    /**
+     * @var string
+     * @ORM\Column(name="username", type="string", unique=true, nullable=true, length=40)
+     */
+    protected $username;
+
+    /**
+     * @param string $googleID
+     */
+    public function setGoogleID($googleID)
     {
-        $this->googleId = $googleId;
+        $this->googleID = $googleID;
     }
 
     /**
      * @return string
      */
-    public function getGoogleId()
+    public function getGoogleID()
     {
-        return $this->googleId;
+        return $this->googleID;
     }
 
     /**
@@ -57,5 +70,15 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getGoogleAccessToken()
+    {
+        return $this->googleAccessToken;
+    }
+
+    public function setGoogleAccessToken($googleAccessToken)
+    {
+        $this->googleAccessToken = $googleAccessToken;
     }
 }

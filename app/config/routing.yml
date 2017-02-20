@@ -1,3 +1,14 @@
 app:
     resource: "@WowGuildAudit/Controller/"
     type:     annotation
+
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /connect
+
+hwi_oauth_login:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix:   /login
+
+google_login:
+    path: /google/login/check

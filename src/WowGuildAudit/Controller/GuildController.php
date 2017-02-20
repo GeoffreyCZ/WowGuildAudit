@@ -9,7 +9,6 @@
 namespace WowGuildAudit\Controller;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\DBAL\Driver\PDOException;
 use Symfony\Component\HttpFoundation\Request;
 use WowGuildAudit\Entity\EnumRole;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

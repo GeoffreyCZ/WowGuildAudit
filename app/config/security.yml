@@ -12,13 +12,23 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
         main:
+            pattern: ^/
             anonymous: ~
-            # activate different ways to authenticate
+        secured_area:
+            pattern: ^/google/
+            anonymous: true
+            logout: true
+            oauth:
+                resource_owners:
+                    google:         "/google/login/check"
+                login_path:       /google/login
+                failure_path:     /google/login
+                check_path:       /google/login/check
 
-            # http_basic: ~
-            # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+                oauth_user_provider:
+                    service: app.provider.oauth
 
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    access_control:
+        - { path: ^/google, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/guild, roles: IS_AUTHENTICATED_FULLY }

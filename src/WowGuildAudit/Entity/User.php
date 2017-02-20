@@ -41,12 +41,6 @@ class User extends BaseUser
     protected $googleAccessToken;
 
     /**
-     * @var string
-     * @ORM\Column(name="username", type="string", unique=true, nullable=true, length=40)
-     */
-    protected $username;
-
-    /**
      * @param string $googleID
      */
     public function setGoogleID($googleID)

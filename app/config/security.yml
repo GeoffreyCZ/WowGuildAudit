@@ -34,4 +34,4 @@ security:
                     service: ib_user.oauth_user_provider
 
     access_control:
-        - { path: ^/guild, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/guild, roles: IS_AUTHENTICATED_ANONYMOUSLY }

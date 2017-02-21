@@ -1,16 +1,15 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/security.html
 security:
-    encoders:
-        FOS\UserBundle\Model\UserInterface: sha512
 
     role_hierarchy:
+        ROLE_USER:       ROLE_USER
         ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_USER
+        ROLE_SUPER_ADMIN: [ ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]
 
     providers:
-        fos_userbundle:
-            id: fos_user.user_provider.username_email
+        my_custom_hwi_provider:
+            id: ib_user.oauth_user_provider
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -19,10 +18,6 @@ security:
             security: false
         secured_area:
             pattern: ^/
-            form_login:
-                provider: fos_userbundle
-                login_path: /login
-                check_path: /login_check
             anonymous: true
             logout:
                 path: /logout
@@ -34,12 +29,9 @@ security:
                 resource_owners:
                     google:         "/login/check-google"
                 login_path:       /login
-                failure_path:     /login
-                check_path:       /connect_check
-                provider: fos_userbundle
-
+                failure_path:       /login
                 oauth_user_provider:
-                    service: app.provider.oauth
+                    service: ib_user.oauth_user_provider
 
     access_control:
         - { path: ^/guild, roles: IS_AUTHENTICATED_FULLY }

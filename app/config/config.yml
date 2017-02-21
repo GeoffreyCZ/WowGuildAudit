@@ -72,31 +72,12 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-fos_user:
-    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
-    firewall_name: secured_area
-    user_class: WowGuildAudit\Entity\User
-    from_email:
-        address: awatar.trellac@gmail.com
-        sender_name: Michal
-
 hwi_oauth:
     # list of names of the firewalls in which this bundle is active, this setting MUST be set
     firewall_names: [secured_area]
-    fosub:
-        username_iterations: 30
-        properties:
-            # these properties will be used/redefined later in the custom FOSUBUserProvider service.
-            google: google_id
-    connect:
-        account_connector: app.provider.oauth
     resource_owners:
         google:
             type:                google
             client_id:           344297151256-qb27buqrpvaqqs73b3fgh071sn8kgj9c.apps.googleusercontent.com
             client_secret:       JPEAtk8DVwMM6IyQIROsIrmV
-            options:
-                csrf: true
             scope:               "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
-            paths:
-                email: email

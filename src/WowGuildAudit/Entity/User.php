@@ -9,7 +9,7 @@
 namespace WowGuildAudit\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use FOS\UserBundle\Model\User as BaseUser;
+use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUser;
 
 /**
  * User
@@ -17,7 +17,7 @@ use FOS\UserBundle\Model\User as BaseUser;
  * @ORM\Table(name="user")
  * @ORM\Entity
  */
-class User extends BaseUser
+class User
 {
     /**
      * @ORM\Column(type="integer")
@@ -32,13 +32,6 @@ class User extends BaseUser
      * @ORM\Column(name="google_id", type="string", unique=true, nullable=true, length=40)
      */
     protected $googleID;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="google_access_token", type="string", unique=true, nullable=true, length=40)
-     */
-    protected $googleAccessToken;
 
     /**
      * @param string $googleID
@@ -64,15 +57,5 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
-    }
-
-    public function getGoogleAccessToken()
-    {
-        return $this->googleAccessToken;
-    }
-
-    public function setGoogleAccessToken($googleAccessToken)
-    {
-        $this->googleAccessToken = $googleAccessToken;
     }
 }

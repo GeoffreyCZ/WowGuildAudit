@@ -4,6 +4,7 @@ namespace WowGuildAudit\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use WowGuildAudit\Entity\User;
 
 class DefaultController extends Controller
 {
@@ -13,15 +14,15 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-        return $this->render('default/index.html.twig', ['user' => $user]);
+        return $this->render('default/index.html.twig');
     }
 
     /**
      * Renders spreadsheet page
      * @Route("/spreadsheet", name="spreadsheet")
      */
-    public function spreadsheetAction() {
+    public function spreadsheetAction()
+    {
         return $this->render('spreadsheet/spreadsheet.html.twig');
     }
 
@@ -29,7 +30,8 @@ class DefaultController extends Controller
      * Renders FAQ page
      * @Route("/faq", name="faq")
      */
-    public function faqAction() {
+    public function faqAction()
+    {
         return $this->render('default/faq.html.twig');
     }
 }

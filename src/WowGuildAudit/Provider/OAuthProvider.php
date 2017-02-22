@@ -22,40 +22,36 @@ class OAuthProvider extends OAuthUserProvider
 
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
     {
-        //Data from Google response
         $googleId = $response->getUsername(); /* An ID like: 112259658235204980084 */
-//        $email = $response->getEmail();
-//        $nickname = $response->getNickname();
-//        $realname = $response->getRealName();
-//        $avatar = $response->getProfilePicture();
+        $email = $response->getEmail();
+        $this->session->set('email', $email);
 
-        //set data in session
-//        $this->session->set('email', $email);
-//        $this->session->set('nickname', $nickname);
-//        $this->session->set('realname', $realname);
-//        $this->session->set('avatar', $avatar);
+        $result = $this->doctrine->getRepository(User::class)->findOneBy(['googleID' => $googleId]);
 
-        //Check if this Google user already exists in our app DB
-        $result = $this->doctrine->getRepository(User::class)->findOneBy(['id' => $googleId]);
-
-        //add to database if doesn't exists
         if (!count($result)) {
-            $user = new User();
+            $user = new User($googleId);
             $user->setGoogleID($googleId);
-//            $user->setRoles('ROLE_USER');
-
-            //Set some wild random pass since its irrelevant, this is Google login
+            $user->setEmail($email);
 
             $em = $this->doctrine->getManager();
             $em->persist($user);
             $em->flush();
         } else {
-            $user = $result[0]; /* return User */
+            $user = $result;
         }
-
-        //set id
-        $this->session->set('id', $user->getId());
 
         return $this->loadUserByUsername($response->getUsername());
     }
+
+//    public function loadUserByUsername($username)
+//    {
+//
+//        $result = $this->doctrine->getRepository(User::class)->findOneBy(['googleID' => $username]);
+//
+//        if (count($result)) {
+//            return $result;
+//        } else {
+//            return new User($username);
+//        }
+//    }
 }

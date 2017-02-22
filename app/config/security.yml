@@ -28,10 +28,10 @@ security:
             oauth:
                 resource_owners:
                     google:         "/login/check-google"
-                login_path:       /login
+                login_path:       /connect/google
                 failure_path:       /login
                 oauth_user_provider:
                     service: ib_user.oauth_user_provider
 
     access_control:
-        - { path: ^/guild, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/guild, roles: IS_AUTHENTICATED_FULLY }

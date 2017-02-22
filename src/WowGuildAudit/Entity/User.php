@@ -34,6 +34,14 @@ class User
     protected $googleID;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", unique=true, nullable=true, length=40)
+     */
+    private $email;
+
+
+    /**
      * @param string $googleID
      */
     public function setGoogleID($googleID)
@@ -57,5 +65,21 @@ class User
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 }

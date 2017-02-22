@@ -69,7 +69,7 @@
                 <li>
                     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                         <a class="page-scroll" href="{{ path('logout') }}">
-                            {#{{ user.email }} #}
+                            {{ app.session.get('email') }}
                             (Log out)
                         </a>
                     {% else %}

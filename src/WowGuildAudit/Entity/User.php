@@ -40,6 +40,12 @@ class User
      */
     private $email;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Guild")
+     * @ORM\JoinColumn(name="guild_id", referencedColumnName="id")
+     */
+    private $guild;
+
 
     /**
      * @param string $googleID
@@ -81,5 +87,21 @@ class User
     public function setEmail($email)
     {
         $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGuild()
+    {
+        return $this->guild;
+    }
+
+    /**
+     * @param mixed $guild
+     */
+    public function setGuild($guild)
+    {
+        $this->guild = $guild;
     }
 }

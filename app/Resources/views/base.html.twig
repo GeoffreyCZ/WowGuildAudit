@@ -48,6 +48,8 @@
 
     {% block javascripts %}
     {% endblock %}
+
+    {% set user = app.session.get('user') %}
 </head>
 <body id="page-top">
 <nav class="navbar navbar-default navbar-fixed-top" id="mainNav">
@@ -61,15 +63,19 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li><a class="page-scroll" href="spreadsheet">Spreadsheet</a></li>
-                <li><a class="page-scroll" href="{{ path('new_guild') }}">New Guild</a></li>
-                <li><a class="page-scroll" href="{{ path('manage_guild') }}">Manage Guild</a></li>
+                {% if app.session.get('guild') == null %}
+                    <li><a class="page-scroll" href="{{ path('new_guild') }}">New Guild</a></li>
+                {% endif %}
+                {% if app.session.get('guild') != null %}
+                    <li><a class="page-scroll" href="{{ path('manage_guild') }}">Manage Guild</a></li>
+                {% endif %}
                 <li><a class="page-scroll" href="https://discord.gg/86eUAFz" target="_blank">Discord</a></li>
                 <li><a class="page-scroll" href="{{ path('faq') }}">FAQ</a></li>
                 <li><a class="page-scroll" href="#">Support</a></li>
                 <li>
                     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                         <a class="page-scroll" href="{{ path('logout') }}">
-                            {{ app.session.get('email') }}
+                            {{ user.email }}
                             (Log out)
                         </a>
                     {% else %}

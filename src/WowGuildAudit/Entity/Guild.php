@@ -39,6 +39,7 @@ class Guild
      * @ORM\OneToMany(targetEntity="Member", mappedBy="guild", cascade={"persist"})
      */
     private $members;
+
     /**
      * @ORM\Column(type="string", length=10)
      */
@@ -140,5 +141,4 @@ class Guild
     {
         $this->members->removeElement($member);
     }
-
 }

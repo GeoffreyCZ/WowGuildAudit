@@ -24,7 +24,6 @@ class OAuthProvider extends OAuthUserProvider
     {
         $googleId = $response->getUsername(); /* An ID like: 112259658235204980084 */
         $email = $response->getEmail();
-        $this->session->set('email', $email);
 
         $result = $this->doctrine->getRepository(User::class)->findOneBy(['googleID' => $googleId]);
 
@@ -40,6 +39,8 @@ class OAuthProvider extends OAuthUserProvider
             $user = $result;
         }
 
+        $this->session->set('user', $user);
+        $this->session->set('guild', $user->getGuild());
         return $this->loadUserByUsername($response->getUsername());
     }
 

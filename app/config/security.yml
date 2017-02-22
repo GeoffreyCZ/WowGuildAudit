@@ -29,7 +29,7 @@ security:
                 resource_owners:
                     google:         "/login/check-google"
                 login_path:       /connect/google
-                failure_path:       /login
+                failure_path:       /
                 oauth_user_provider:
                     service: ib_user.oauth_user_provider
 

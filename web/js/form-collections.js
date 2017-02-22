@@ -64,7 +64,7 @@ function addMemberForm($collectionHolder, $newLinkTr) {
 }
 
 function addMemberFormDeleteLink($memberFormTr) {
-    var $removeFormA = $('<td class="remove-form"><a class="remove-link" href="#">X</a></td>');
+    var $removeFormA = $('<td class="remove-form"><a class="remove-link" href="#"><i class="glyphicon glyphicon-trash"></i></a></td>');
     var $removedFormTr = $('<tr class="not-count"><td colspan="6">Member was marked for removal, save changes for confirmation. <a href="#">Undo</a></td></tr>');
     $memberFormTr.append($removeFormA);
 

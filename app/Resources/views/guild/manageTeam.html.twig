@@ -21,6 +21,8 @@
                     {% endfor %}
                 {% endfor %}
                 <a href="{{ path('manage_guild') }}"><- Back to guild management</a>
+                <br>
+                <a href="{{ path('guild_battle') }}" class="fetch">Use Battle.net API to fetch members</a>
                 <h2>Managing {{ team.name }}</h2>
                 {{ form_start(form) }}
                 <div class='container'>

@@ -8,12 +8,18 @@
 
 namespace WowGuildAudit\Controller;
 
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Buzz\Browser;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 use WowGuildAudit\Entity\EnumRole;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use WowGuildAudit\Entity\Guild;
 use WowGuildAudit\Entity\Member;
 use WowGuildAudit\Entity\Realm;
@@ -146,7 +152,7 @@ class GuildController extends Controller
             try {
                 $entityManager->persist($team);
                 $entityManager->flush();
-            } catch(\Exception $exception){
+            } catch (\Exception $exception) {
                 $this->addFlash(
                     'danger',
                     'Error! You can\'t add one member twice in one guild'
@@ -223,6 +229,33 @@ class GuildController extends Controller
             'realms' => $realms,
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * Renders guild creation page
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/guild/battle", name="guild_battle")
+     */
+    public function fetchFromBattleNetAction()
+    {
+        $ch = curl_init('https://eu.api.battle.net/wow/guild/Stormrage/Avalerion?fields=members&locale=en_GB&apikey=va9gftzrqx3b6t3xkmeknc6cuf46yevc');
+//        $request = new Request('https://eu.api.battle.net/wow/guild/Stormrage/Avalerion?fields=members&locale=en_GB&apikey=va9gftzrqx3b6t3xkmeknc6cuf46yevc');
+        $request = curl_exec($ch);
+//        var_dump($request);
+//        $collection = $this->parse($jsonContent);
+        return $this->render('guild/battle.html.twig', [
+            'response' => $request
+        ]);
+    }
+
+    private function parse($response)
+    {
+        foreach ($response['content'] as $member) {
+            print_r($member);
+            echo('<br>');
+            echo('<br>');
+            echo('<br>');
+        }
     }
 
     /**

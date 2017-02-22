@@ -41,11 +41,14 @@ class User
     private $email;
 
     /**
-     * @ORM\OneToOne(targetEntity="Guild")
-     * @ORM\JoinColumn(name="guild_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Guild", mappedBy="user")
      */
     private $guild;
 
+    /**
+     * @ORM\Column(name="premium", type="boolean")
+     */
+    private $premium;
 
     /**
      * @param string $googleID
@@ -103,5 +106,21 @@ class User
     public function setGuild($guild)
     {
         $this->guild = $guild;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPremium()
+    {
+        return $this->premium;
+    }
+
+    /**
+     * @param mixed $premium
+     */
+    public function setPremium($premium)
+    {
+        $this->premium = $premium;
     }
 }

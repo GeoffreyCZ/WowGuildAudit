@@ -9,6 +9,7 @@
 namespace WowGuildAudit\Controller;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use WowGuildAudit\Entity\EnumRole;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,8 +17,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use WowGuildAudit\Entity\Guild;
 use WowGuildAudit\Entity\Member;
 use WowGuildAudit\Entity\Realm;
-use WowGuildAudit\Form\GuildType;
+use WowGuildAudit\Entity\Team;
 use WowGuildAudit\Form\NewGuildType;
+use WowGuildAudit\Form\TeamType;
 
 /**
  * Class GuildController
@@ -37,30 +39,81 @@ class GuildController extends Controller
     }
 
     /**
-     * Renders guild management page with all members
+     * Renders guild management page with all teams
      * @param $request Request
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/guild/manage", name="manage_guild")
      */
     public function manageGuildAction(Request $request)
     {
+        $user = $request->getSession()->get('user');
+        $guild = $this->getDoctrine()->getRepository(Guild::class)->findOneBy(['id' => $user->getGuild()->getId()]);
 
+        return $this->render('guild/manage.html.twig', [
+            'guild' => $guild
+        ]);
+
+    }
+
+    /**
+     * Method that handles AJAX request to add guild team
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function addTeamAction(Request $request)
+    {
+        $guild = $this->getDoctrine()->getRepository(Guild::class)->findOneBy(['id' => $request->get('guildId')]);
+        $name = $request->get('name');
+        $team = new Team();
+        $team->setName($name);
+        $team->setGuild($guild);
         $entityManager = $this->getDoctrine()->getManager();
-        $guildName = 'testGuild1';
+        $entityManager->persist($team);
+        $entityManager->flush();
+        $response = array("code" => 100, "success" => true);
+        return new JsonResponse($response);
+    }
+
+    /**
+     * Method that handles AJAX request to remove guild team
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function removeTeamAction(Request $request)
+    {
+        $teamId = $request->get('teamId');
+        $team = $this->getDoctrine()->getRepository(Team::class)->findOneBy(['id' => $teamId]);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($team);
+        $entityManager->flush();
+        $response = array("code" => 100, "success" => true);
+        return new JsonResponse($response);
+    }
+
+    /**
+     * Renders team management page with all members
+     * @param $request Request
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/guild/manage/team/{teamId}", name="manage_guild_team")
+     */
+    public function manageTeamAction(Request $request, $teamId)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $user = $request->getSession()->get('user');
         $roles = $this->getDoctrine()->getRepository(EnumRole::class)->findAll();
-        $guild = $this->getDoctrine()->getRepository(Guild::class)->findOneBy(array('name' => $guildName));
-        $form = $this->createForm(GuildType::class, $guild);
+        $team = $this->getDoctrine()->getRepository(Team::class)->findOneBy(array('id' => $teamId));
+        $form = $this->createForm(TeamType::class, $team);
         $realms = $this->getAllRealms();
 
         $originalMembers = new ArrayCollection();
 
-        foreach ($guild->getMembers() as $member) {
+        foreach ($team->getMembers() as $member) {
             $originalMembers->add($member);
         }
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            foreach ($guild->getMembers() as $member) {
+            foreach ($team->getMembers() as $member) {
                 /** @var $member Member */
                 $role = $this->getDoctrine()->getRepository(EnumRole::class)->findOneBy(['role' => $member->getRole()]);
                 $realm = $this->getDoctrine()->getRepository(Realm::class)->findOneBy(array(
@@ -72,8 +125,8 @@ class GuildController extends Controller
                         'danger',
                         'Member ' . $member->getName() . '\'s realm was not found, choose one from the list, please.'
                     );
-                    return $this->render('guild/manage.html.twig', [
-                        'guild' => $guild,
+                    return $this->render('guild/manageTeam.html.twig', [
+                        'team' => $team,
                         'roles' => $roles,
                         'realms' => $realms,
                         'form' => $form->createView()
@@ -83,15 +136,15 @@ class GuildController extends Controller
                 $member->setRealm($realm);
             }
             foreach ($originalMembers as $originalMember) {
-                if ($guild->getMembers()->contains($originalMember) === false) {
+                if ($team->getMembers()->contains($originalMember) === false) {
                     /** @var $originalMember Member */
-                    $guild->removeMember($originalMember);
-                    $originalMember->setGuild(null);
+                    $team->removeMember($originalMember);
+                    $originalMember->setTeam(null);
                     $entityManager->remove($originalMember);
                 }
             }
             try {
-                $entityManager->persist($guild);
+                $entityManager->persist($team);
                 $entityManager->flush();
             } catch(\Exception $exception){
                 $this->addFlash(
@@ -99,8 +152,8 @@ class GuildController extends Controller
                     'Error! You can\'t add one member twice in one guild'
                 );
 
-                return $this->render('guild/manage.html.twig', [
-                    'guild' => $guild,
+                return $this->render('guild/manageTeam.html.twig', [
+                    'team' => $team,
                     'roles' => $roles,
                     'realms' => $realms,
                     'form' => $form->createView()
@@ -112,8 +165,8 @@ class GuildController extends Controller
             );
         }
 
-        return $this->render('guild/manage.html.twig', [
-            'guild' => $guild,
+        return $this->render('guild/manageTeam.html.twig', [
+            'team' => $team,
             'roles' => $roles,
             'realms' => $realms,
             'form' => $form->createView()

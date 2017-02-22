@@ -15,3 +15,11 @@ google_login:
 
 logout:
     path: /logout
+
+WowGuildAudit_ajax_add_team:
+    path:  /guild/addTeam
+    defaults: { _controller: WowGuildAudit:Guild:addTeam }
+
+WowGuildAudit_ajax_remove_team:
+    path:  /guild/removeTeam
+    defaults: { _controller: WowGuildAudit:Guild:removeTeam }

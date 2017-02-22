@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="Member", uniqueConstraints={@ORM\UniqueConstraint(name="unique_member", columns={"guild_id", "name", "realm_id"})})
+ * @ORM\Table(name="Member", uniqueConstraints={@ORM\UniqueConstraint(name="unique_member", columns={"team_id", "name", "realm_id"})})
  */
 class Member
 {
@@ -29,10 +29,10 @@ class Member
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Guild", inversedBy="members")
-     * @ORM\JoinColumn(name="guild_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Team", inversedBy="members")
+     * @ORM\JoinColumn(name="team_id", referencedColumnName="id")
      */
-    private $guild;
+    private $team;
 
     /**
      * @ORM\ManyToOne(targetEntity="EnumRole")
@@ -81,17 +81,17 @@ class Member
     /**
      * @return mixed
      */
-    public function getGuild()
+    public function getTeam()
     {
-        return $this->guild;
+        return $this->team;
     }
 
     /**
-     * @param mixed $guild
+     * @param mixed $team
      */
-    public function setGuild($guild)
+    public function setTeam($team)
     {
-        $this->guild = $guild;
+        $this->team = $team;
     }
 
     /**

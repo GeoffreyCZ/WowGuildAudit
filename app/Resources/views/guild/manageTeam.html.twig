@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/form-collections.js') }}"></script>
+{% endblock %}
+{% block body %}
+    <header>
+        <div class='header-content'>
+            <div class='header-content-inner'>
+                <div id="dialog">
+                    <p>You have reached the maximum of 40 guild members.</p>
+                    <p>Press Esc to dismiss the dialog.</p>
+                </div>
+                {% for type, messages in app.session.flashBag.all() %}
+                    {% for message in messages %}
+                        <div class="saved alert alert-{{ type }} fade in alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span
+                                        aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                <a href="{{ path('manage_guild') }}"><- Back to guild management</a>
+                <h2>Managing {{ team.name }}</h2>
+                {{ form_start(form) }}
+                <div class='container'>
+                    <div class='col-lg-10 col-lg-offset-1 text-center'>
+                        <table class='table'>
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Character Name</th>
+                                <th>Realm (optional)</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Mark for removal</th>
+                            </tr>
+                            </thead>
+                            <tbody class="members" data-prototype="
+                                {% filter escape %}
+                                {{ include('prototype.html.twig', { 'form': form.members.vars.prototype}) }}
+                                {% endfilter %}">
+                            {% set i = 0 %}
+                            {% for member in form.members %}
+                                {% set i = i + 1 %}
+                                <tr>
+                                    <td></td>
+                                    <td>{{ form_row(member.name) }}</td>
+                                    <td>{{ form_row(member.realm) }}</td>
+                                    <td>{{ form_row(member.role) }}</td>
+                                    <td></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}

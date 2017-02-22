@@ -36,14 +36,20 @@ class Guild
     private $realm;
 
     /**
-     * @ORM\OneToMany(targetEntity="Member", mappedBy="guild", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Team", mappedBy="guild", cascade={"persist"})
      */
-    private $members;
+    private $teams;
 
     /**
      * @ORM\Column(type="string", length=10)
      */
     private $guildKey;
+
+    /**
+     * @ORM\OneToOne(targetEntity="User", inversedBy="guild")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
 
     public function __construct()
     {
@@ -102,17 +108,17 @@ class Guild
     /**
      * @return mixed
      */
-    public function getMembers()
+    public function getTeams()
     {
-        return $this->members;
+        return $this->teams;
     }
 
     /**
-     * @param mixed $members
+     * @param mixed $teams
      */
-    public function setMembers($members)
+    public function setTeams($teams)
     {
-        $this->members = $members;
+        $this->teams = $teams;
     }
 
     /**
@@ -132,7 +138,7 @@ class Guild
     }
 
     public function addMember(Member $member) {
-        $member->setGuild($this);
+        $member->setTeam($this);
 
         $this->members->add($member);
     }
@@ -140,5 +146,21 @@ class Guild
     public function removeMember(Member $member)
     {
         $this->members->removeElement($member);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
     }
 }

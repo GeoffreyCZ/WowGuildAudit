@@ -1,67 +1,113 @@
 {% extends 'base.html.twig' %}
 
 {% block javascripts %}
-    <script src="{{ asset('js/form-collections.js') }}"></script>
+    <script>
+        function aButtonPressed() {
+
+            $.post('{{ path('WowGuildAudit_ajax_add_team') }}',
+                {
+                    name: $('input.newTeamName').val(),
+                    guildId: $('input.newTeamGuildId').val()
+                },
+                function (response) {
+                    if (response.code == 100 && response.success) {
+                        document.location.reload(true);
+                    }
+
+                }, "json");
+        }
+
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+            $('button.addTeam').on('click', function () {
+                aButtonPressed();
+            });
+
+            $confirmDialog = $("#confirm-dialog");
+            $confirmDialog.dialog({
+                autoOpen: false,
+                modal: true
+            });
+
+            $(".confirmLink").click(function (e) {
+                e.preventDefault();
+                var $confirmLink = $(this);
+
+                $confirmDialog.dialog({
+                    buttons: {
+                        "Confirm": function () {
+                            $.post('{{ path('WowGuildAudit_ajax_remove_team') }}',
+                                {
+                                    teamId: $confirmLink.attr('data-teamId')
+                                },
+                                function (response) {
+                                    if (response.code == 100 && response.success) {
+                                        document.location.reload(true);
+                                    }
+
+                                }, "json");
+                        },
+                        "Cancel": function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+
+                $confirmDialog.dialog("open");
+            });
+        });
+    </script>
 {% endblock %}
 {% block body %}
 
     <header>
+        <div id="confirm-dialog" title="Confirmation Required">
+            Are you sure you want to delete the team? You will lose it along with all assigned members to this team!
+        </div>
         <div class='header-content'>
             <div class='header-content-inner'>
-                {% for type, messages in app.session.flashBag.all() %}
-                    {% for message in messages %}
-                        <div class="saved alert alert-{{ type }} fade in alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert"><span
-                                        aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endfor %}
                 <h2>Managing {{ guild.name }} on {{ guild.realm.name }} ({{ guild.realm.region }})</h2>
                 <h3>Keycode: {{ guild.guildkey }}</h3>
-                <p><a class='btn btn-primary btn-xl page-scroll' href='#services'>Add / Remove Members</a></p>
+                {% set counter = 0 %}
+                {% for team in guild.teams %}
+                    {% set counter = counter + 1 %}
+                    <div class="col-lg-4">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                {{ team.name }}</div>
+                            <div class="panel-body" style="color: black">
+                                <i class="glyphicon glyphicon-cog"><a
+                                            href={{ path('manage_guild_team', {'teamId': team.id}) }}>Manage</a></i>
+                                <i class="glyphicon glyphicon-trash"><a href=""
+                                                                        class="confirmLink"
+                                                                        data-teamId="{{ team.id }}">Remove</a></i>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% if counter < 10 %}
+                    <div class="col-lg-4">
+                        <div
+                                {% if user.premium == false %}
+                            data-toggle="tooltip" title="Only premium members can add more teams!" data-placement="bottom"
+                                {% endif %}>
+                            <div class="panel panel-success
+                        {% if user.premium == false %}
+                            disabled
+                        {% endif %}">
+                                <div class="panel-heading">
+                                    <input type="text" class="newTeamName">
+                                    <input type="hidden" class="newTeamGuildId" value="{{ guild.id }}">
+                                </div>
+                                <div class="panel-body" style="color: black">
+                                    <button class="addTeam">Add team</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </header>
-    <section id='services'>
-        <div id="dialog">
-            <p>You have reached the maximum of 30 guild members.</p>
-            <p>Press Esc to dismiss the dialog.</p>
-        </div>
-
-        {{ form_start(form) }}
-        <div class='container'>
-            <div class='col-lg-10 col-lg-offset-1 text-center'>
-                <table class='table'>
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Character Name</th>
-                        <th>Realm (optional)</th>
-                        <th>Role</th>
-                        <th>Status</th>
-                        <th>Mark for removal</th>
-                    </tr>
-                    </thead>
-                    <tbody class="members" data-prototype="
-                        {% filter escape %}
-                            {{ include('prototype.html.twig', { 'form': form.members.vars.prototype}) }}
-                        {% endfilter %}">
-                    {% set i = 0 %}
-                    {% for member in form.members %}
-                        {% set i = i + 1 %}
-                        <tr>
-                            <td></td>
-                            <td>{{ form_row(member.name) }}</td>
-                            <td>{{ form_row(member.realm) }}</td>
-                            <td>{{ form_row(member.role) }}</td>
-                            <td></td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-                {{ form_end(form) }}
-            </div>
-        </div>
-    </section>
 {% endblock %}

@@ -28,7 +28,7 @@ jQuery(document).ready(function () {
 
         e.preventDefault();
         var rowCount = $('tbody tr').length;
-        if (rowCount <= 30) {
+        if (rowCount <= 40) {
             addMemberForm($collectionHolder, $newLinkTr);
         } else {
             $("#dialog").dialog("open");

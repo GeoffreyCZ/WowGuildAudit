@@ -26,7 +26,6 @@ class OAuthProvider extends OAuthUserProvider
         $email = $response->getEmail();
 
         $result = $this->doctrine->getRepository(User::class)->findOneBy(['googleID' => $googleId]);
-
         if (!count($result)) {
             $user = new User($googleId);
             $user->setGoogleID($googleId);

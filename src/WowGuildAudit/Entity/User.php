@@ -14,7 +14,7 @@ use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUser;
 /**
  * User
  *
- * @ORM\Table(name="user")
+ * @ORM\Table(name="User")
  * @ORM\Entity
  */
 class User

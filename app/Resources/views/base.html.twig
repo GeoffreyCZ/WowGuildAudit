@@ -65,8 +65,7 @@
                 <li><a class="page-scroll" href="spreadsheet">Spreadsheet</a></li>
                 {% if app.session.get('guild') == null %}
                     <li><a class="page-scroll" href="{{ path('new_guild') }}">New Guild</a></li>
-                {% endif %}
-                {% if app.session.get('guild') != null %}
+                {% else %}
                     <li><a class="page-scroll" href="{{ path('manage_guild') }}">Manage Guild</a></li>
                 {% endif %}
                 <li><a class="page-scroll" href="https://discord.gg/86eUAFz" target="_blank">Discord</a></li>

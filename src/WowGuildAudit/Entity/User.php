@@ -46,9 +46,9 @@ class User
     private $guild;
 
     /**
-     * @ORM\Column(name="premium", type="boolean")
+     * @ORM\Column(name="premium", type="boolean", )
      */
-    private $premium;
+    private $premium = false;
 
     /**
      * @param string $googleID

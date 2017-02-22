@@ -22,9 +22,6 @@ security:
             logout:
                 path: /logout
                 target: /
-            remember_me:
-                secret:   '%secret%'
-                lifetime: 604800
             oauth:
                 resource_owners:
                     google:         "/login/check-google"

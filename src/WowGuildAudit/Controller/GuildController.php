@@ -10,20 +10,17 @@ namespace WowGuildAudit\Controller;
 
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Buzz\Browser;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Encoder\XmlEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\HttpFoundation\Session\Session;
 use WowGuildAudit\Entity\EnumRole;
 use WowGuildAudit\Entity\Guild;
 use WowGuildAudit\Entity\Member;
 use WowGuildAudit\Entity\Realm;
 use WowGuildAudit\Entity\Team;
+use WowGuildAudit\Entity\User;
 use WowGuildAudit\Form\NewGuildType;
 use WowGuildAudit\Form\TeamType;
 
@@ -105,7 +102,6 @@ class GuildController extends Controller
     public function manageTeamAction(Request $request, $teamId)
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $user = $request->getSession()->get('user');
         $roles = $this->getDoctrine()->getRepository(EnumRole::class)->findAll();
         $team = $this->getDoctrine()->getRepository(Team::class)->findOneBy(array('id' => $teamId));
         $form = $this->createForm(TeamType::class, $team);
@@ -210,9 +206,15 @@ class GuildController extends Controller
 
             if (!$duplicityCheck) {
                 $entityManager = $this->getDoctrine()->getManager();
+                $user = $request->getSession()->get('user');
+                $result = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => $user->getId()]);
+                $guild->setUser($result);
                 $entityManager->persist($guild);
                 $entityManager->flush();
-                return $this->redirectToRoute('manage_guild', array('guild' => $guild));
+                $session = new Session();
+                $session->migrate();
+                $session->set('guild', $guild);
+                return $this->redirectToRoute('homepage', array('guild' => $guild));
             } else {
                 $this->addFlash(
                     'danger',

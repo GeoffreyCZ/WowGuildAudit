@@ -46,7 +46,7 @@ class Guild
     private $guildKey;
 
     /**
-     * @ORM\OneToOne(targetEntity="User", inversedBy="guild")
+     * @ORM\OneToOne(targetEntity="User", inversedBy="guild", cascade={"persist"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;

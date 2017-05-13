@@ -1,0 +1,37 @@
+# Copyright 2015 Google Inc. All Rights Reserved.
+runtime: php55
+api_version: 1
+threadsafe: true
+
+# [START clear_cache]
+handlers:
+# a script to clear our cache
+- url: /clear_cache
+  script: web/clear_cache.php
+  login: admin
+# [END clear_cache]
+
+# tell appengine where our static assets live
+- url: /bundles
+  static_dir: web/bundles
+
+- url: /robots.txt
+  static_files: web/robots.txt
+  upload: web/robots.txt
+
+- url: /favicon.ico
+  static_files: web/favicon.ico
+  upload: web/favicon.ico
+
+# the symfony front controller
+- url: /.*
+  script: web/app.php
+
+# [START env_vars]
+env_variables:
+  GCS_BUCKET_NAME: "guildaudit"
+# [END env_vars]
+
+skip_files:
+  - (.*/)?Tests\/Fixtures\/(.*)
+  - ^app\/cache\/(.*)

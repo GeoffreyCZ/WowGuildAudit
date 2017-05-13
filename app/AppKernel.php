@@ -5,6 +5,34 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 
 class AppKernel extends Kernel
 {
+    private $gcsBucketName;
+
+    public function __construct($environment = null, $debug = null)
+    {
+        // determine the environment / debug configuration based on whether or not this is running
+        // in App Engine's Dev App Server, or in production
+        if (is_null($debug)) {
+            $debug = !Environment::onAppEngine();
+        }
+
+        if (is_null($environment)) {
+            $environment = $debug ? 'dev' : 'prod';
+        }
+
+        parent::__construct($environment, $debug);
+
+        // Symfony console requires timezone to be set manually.
+        if (!ini_get('date.timezone')) {
+          date_default_timezone_set('UTC');
+        }
+
+        // Enable optimistic caching for GCS.
+        $options = ['gs' => ['enable_optimsitic_cache' => true]];
+        stream_context_set_default($options);
+
+        $this->gcsBucketName = getenv('GCS_BUCKET_NAME');
+    }
+
     public function registerBundles()
     {
         $bundles = [
@@ -36,16 +64,36 @@ class AppKernel extends Kernel
 
     public function getCacheDir()
     {
-        return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
+        if ($this->gcsBucketName) {
+            return sprintf('gs://%s/symfony/cache%s', $this->gcsBucketName, $this->getVersionSuffix());
+        }
+
+        return parent::getCacheDir();
     }
 
     public function getLogDir()
     {
-        return dirname(__DIR__).'/var/logs';
+        if ($this->gcsBucketName) {
+            return sprintf('gs://%s/symfony/log', $this->gcsBucketName);
+        }
+
+        return parent::getLogDir();
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
+    }
+
+    private function getVersionSuffix()
+    {
+        $version = getenv('CURRENT_VERSION_ID');
+
+        // CURRENT_VERSION_ID in PHP represents major and minor version
+        if (1 === substr_count($version, '.')) {
+            list($major, $minor) = explode('.', $version);
+
+            return '-' . $major;
+        }
     }
 }
